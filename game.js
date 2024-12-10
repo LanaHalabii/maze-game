@@ -75,12 +75,22 @@ function endGame(){
     }
 }
 
+function resetScore() {
+    if (score > 0) {
+        score = 0; 
+        status_display.innerHTML = "Your score is 0"}
+    }
+    
+
 function loadPage(){
     end = document.getElementById("end");
     start = document.getElementById("start");
     boundaries = document.getElementsByClassName("boundary");
     status_display =  document.getElementById("status");
+    resetGame = document.getElementById("button")
 
+
+    resetGame.addEventListener("click", resetScore)
     end.addEventListener("mouseover", endGame);
     start.addEventListener("click", startGame);
     for(let i = 0; i < boundaries.length; i++){

@@ -48,6 +48,14 @@ div.boundary {
 	border: 1px solid black;
 }
 
+div.obstacle {
+	height: 25px;
+	width: 25px;
+	background-color: red;
+	border-radius: 50%;
+	display: inline-block;
+}
+
 div.boundary.example {
 	margin: auto;
 	width: 100px;

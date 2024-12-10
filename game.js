@@ -19,9 +19,10 @@ function displayScore(message){
 function countDownTimer(){
     var timeleft = 5;
     var downloadTimer = setInterval(function(){
-    if(is_game_running == false){
+    if(is_game_running == false || timeleft == 0){
         clearInterval(downloadTimer);
-        document.getElementById("countdown").innerHTML = "Timer is up!";
+        gameOver();
+        document.getElementById("countdown").innerHTML = "Time is up!";
     } else {
         document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
     }
@@ -36,16 +37,31 @@ function gameOver(){
         if(score > 0)
             score = score - 1;
         displayScore("Game Over!");
+        playLosingAudio();
         is_game_running = false;
     }
 }
 
 function startGame(){
     displayScore("");
-    ountDownTimer("");
+    countDownTimer("");
     is_game_running = true;
     for(let i = 0; i < boundaries.length; i++)
         boundaries[i].style.backgroundColor = "#eeeeee"; 
+}
+
+function playWinningAudio(){
+    if(endGame) {
+        winning_sound = document.getElementById("winning");
+        winning_sound.play();
+    }
+}
+
+function playLosingAudio(){
+    if(gameOver) {
+        losing_sound = document.getElementById("losing");
+        losing_sound.play();
+    }
 }
 
 function endGame(){
@@ -54,6 +70,7 @@ function endGame(){
             boundaries[i].style.backgroundColor = "rgb(113 225 141)"; 
         score = score + 5;
         displayScore("You Won!");
+        playWinningAudio();
         is_game_running = false;
     }
 }
